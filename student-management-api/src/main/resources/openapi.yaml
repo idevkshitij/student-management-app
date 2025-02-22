@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+  description: API for managing student records
+  title: Student Management API
+  version: 1.0.0
+servers:
+- description: Local development server
+  url: http://localhost:8080/api
+paths:
+  /students:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Student'
+                type: array
+          description: List of students
+      summary: Get all students
+      x-accepts:
+      - application/json
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: Student created successfully
+        "400":
+          description: Invalid input
+      summary: Add a new student
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /students/{id}:
+    delete:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: Student deleted successfully
+        "404":
+          description: Student not found
+      summary: Delete a student by ID
+      x-accepts:
+      - application/json
+    get:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: Student details
+        "404":
+          description: Student not found
+      summary: Get a student by ID
+      x-accepts:
+      - application/json
+    put:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: Student updated successfully
+        "404":
+          description: Student not found
+      summary: Update a student by ID
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    Student:
+      example:
+        phoneNumber: "1234567890"
+        name: Kshitij
+        className: 10th Grade
+        id: 0
+        age: 25
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        name:
+          example: Kshitij
+          type: string
+        age:
+          example: 25
+          type: integer
+        className:
+          example: 10th Grade
+          type: string
+        phoneNumber:
+          example: "1234567890"
+          type: string
+      required:
+      - age
+      - className
+      - name
+      - phoneNumber
+      type: object
