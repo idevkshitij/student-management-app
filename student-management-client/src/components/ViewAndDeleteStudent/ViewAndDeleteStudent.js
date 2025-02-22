@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import api from "../../services/api";
 import styles from "./ViewAndDeleteStudent.module.css";
+import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 
 const ViewAndDeleteStudent = () => {
   const [students, setStudents] = useState([]);
+  const [filteredStudents, setFilteredStudents] = useState([]);
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -14,6 +16,7 @@ const ViewAndDeleteStudent = () => {
       try {
         const response = await api.get("/api/students", {});
         setStudents(response.data);
+        setFilteredStudents(response.data); // Initialize filtered students
       } catch (error) {
         console.error(
           "Failed to fetch students:",
@@ -47,6 +50,7 @@ const ViewAndDeleteStudent = () => {
         const student = students.find((student) => student.id === id);
         await api.delete(`/api/students/${id}`);
         setStudents(students.filter((student) => student.id !== id));
+        setFilteredStudents(students.filter((student) => student.id !== id));
         alert(`Student ${student.name} successfully deleted!`); // Alert for successful deletion with student name
       } catch (error) {
         console.error(
@@ -57,10 +61,32 @@ const ViewAndDeleteStudent = () => {
     }
   };
 
+  const handleSearch = (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    const filtered = students.filter((student) =>
+      student.name.toLowerCase().includes(searchTerm)
+    );
+    setFilteredStudents(filtered);
+  };
+
   return (
     <div className={styles.container}>
-      <h1>Students Stored List</h1>
-      <table className={styles.table}>
+      <div className="d-flex align-items-center justify-content-between">
+        <h1>Students List</h1>
+        <input
+          type="text"
+          className="form-control form-control-sm"
+          placeholder="Search Student By Name"
+          style={{
+            width: "500px",
+            height: "3em",
+            marginLeft: "2em",
+            fontSize: "1em",
+          }} // Adjust the width, height, and add left margin
+          onChange={handleSearch}
+        />
+      </div>
+      <table className={styles.table} style={{ marginTop: "20px" }}>
         <thead>
           <tr>
             <th>ID</th>
@@ -72,7 +98,7 @@ const ViewAndDeleteStudent = () => {
           </tr>
         </thead>
         <tbody>
-          {students.map((student) => (
+          {filteredStudents.map((student) => (
             <tr key={student.id}>
               <td>{student.id}</td>
               <td>{student.name}</td>
