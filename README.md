@@ -99,14 +99,14 @@ The backend APIs follow an API-First Design approach. You can explore and test t
 ## Screenshots
 
 - **Login Page**: ![Login Page](./screenshots/login.png)
-- **Add Student Page with Validation**: ![Add Student Validation](./screenshots/add-student-validation.png)
-- **Edit Student Page with Validation**: ![Edit Student Validation](./screenshots/edit-student-validation.png)
+- **Add Student Page with Validation**: ![Add Student Validation](./screenshots/add-validation.png)
+- **Edit Student Page with Validation**: ![Edit Student Validation](./screenshots/edit-validation.png)
 - **Edit Confirmation**: ![Edit Confirmation](./screenshots/edit-confirmation.png)
 - **Delete Confirmation**: ![Delete Confirmation](./screenshots/delete-confirmation.png)
 - **Delete Confirmation (Alternative)**: ![Delete Confirmation 2](./screenshots/delete-confirmation-2.png)
 - **Logout Confirmation**: ![Logout Confirmation](./screenshots/logout-confirmation.png)
 - **Search Functionality**: ![Search](./screenshots/search.png)
-- **View Students Page**: ![View Students](./screenshots/view-students.png)
+- **View Students Page**: ![View Students](./screenshots/view-students.ping.png)
 
 ---
 
