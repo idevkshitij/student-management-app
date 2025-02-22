@@ -113,7 +113,6 @@ The backend APIs follow an API-First Design approach. You can explore and test t
 ## TODO List
 
 - Add pagination for the student list.
-- Implement search functionality for students.
 - Add user roles (e.g., admin, user) with different permissions.
 - Improve UI/UX with a modern design library (e.g., Material-UI).
 - Write unit tests for both frontend and backend.
