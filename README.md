@@ -85,6 +85,9 @@ A full-stack web application for managing student records. This application allo
 
 4. **Access the Application**:
    - Open your browser and go to `http://localhost:3000`.
+   - App Currently has single hardcoded user: admin
+        username : admin
+        password : password
 
 ---
 
@@ -98,6 +101,7 @@ The backend APIs follow an API-First Design approach. You can explore and test t
 
 ## Screenshots
 
+- **API Documentation**: ![Swagger API Doc](./screenshots/api-doc.png)
 - **Login Page**: ![Login Page](./screenshots/login.png)
 - **Add Student Page with Validation**: ![Add Student Validation](./screenshots/add-validation.png)
 - **Edit Student Page with Validation**: ![Edit Student Validation](./screenshots/edit-validation.png)
